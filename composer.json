@@ -1,0 +1,15 @@
+{
+  "name": "papasmurf17/nested_roles",
+  "description": "company nested roles",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Matteo Codogno",
+      "email": "matteo.codogno.90@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"NestedRoles\\": "app/"}
+  }
+}
