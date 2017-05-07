@@ -14,21 +14,13 @@ switch ($method) {
         if (empty($errors)) {
             $treeService = new \NestedRoles\bl\NodeTreeService();
 
-            if (isset($_GET['page_num']) && isset($_GET['page_size'])) {
-                $nodes = $treeService->getChildrenNodes(
-                    $_GET['node_id'],
-                    $_GET['language'],
-                    isset($_GET['search_keyword']) ? $_GET['search_keyword'] : '',
-                    $_GET['page_num'],
-                    $_GET['page_size']
-                );
-            } else {
-                $nodes = $treeService->getChildrenNodes(
-                    $_GET['node_id'],
-                    $_GET['language'],
-                    isset($_GET['search_keyword']) ? $_GET['search_keyword'] : ''
-                );
-            }
+            $nodes = $treeService->getChildrenNodes(
+                $_GET['node_id'],
+                $_GET['language'],
+                isset($_GET['search_keyword']) ? $_GET['search_keyword'] : '',
+                isset($_GET['page_num']) ? $_GET['page_num'] : 0,
+                isset($_GET['page_size']) ? $_GET['page_size'] : 100
+            );
 
             echo json_encode(['nodes' => $nodes, 'error' => '']);
         } else {
@@ -68,7 +60,7 @@ function checkInputParams($params) { // TODO: extract into validation class
     } else if ('italian' != $params['language'] && 'english' != $params['language']) {
         array_push($errors, 'Error: Param [language] must be match with "italian" or "english" string!');
     }
-    
+
     if (isset($_GET['page_num']) && !is_numeric($_GET['page_num'])) {
         array_push($errors, 'Invalid page number request');
     }
