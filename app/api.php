@@ -68,10 +68,15 @@ function checkInputParams($params) { // TODO: extract into validation class
     } else if ('italian' != $params['language'] && 'english' != $params['language']) {
         array_push($errors, 'Error: Param [language] must be match with "italian" or "english" string!');
     }
-
-//    isset($_GET['page_num']) && isset($_GET['page_size']
+    
     if (isset($_GET['page_num']) && !is_numeric($_GET['page_num'])) {
         array_push($errors, 'Invalid page number request');
+    }
+
+    if (isset($_GET['page_size']) &&
+        (!is_numeric($_GET['page_size']) || $_GET['page_size'] < 0 || $_GET['page_size'] > 1000 )) {
+
+        array_push($errors, 'Invalid page size request');
     }
 
     return $errors;
