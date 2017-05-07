@@ -53,7 +53,7 @@ if ($error != '') {
  * @param $params
  * @return array - error list
  */
-function checkInputParams($params) {
+function checkInputParams($params) { // TODO: extract into validation class
     $errors = [];
 
     if (!isset($params['node_id'])) {
@@ -69,7 +69,10 @@ function checkInputParams($params) {
         array_push($errors, 'Error: Param [language] must be match with "italian" or "english" string!');
     }
 
-    // TODO: add page number and page size validation
+//    isset($_GET['page_num']) && isset($_GET['page_size']
+    if (isset($_GET['page_num']) && !is_numeric($_GET['page_num'])) {
+        array_push($errors, 'Invalid page number request');
+    }
 
     return $errors;
 }
