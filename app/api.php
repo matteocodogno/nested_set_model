@@ -57,14 +57,14 @@ function checkInputParams($params) {
     $errors = [];
 
     if (!isset($params['node_id'])) {
-        array_push($errors, 'Error: Param [node_id] not provided!');
+        array_push($errors, 'Missing mandatory params');
     } else if (!is_numeric($params['node_id'])) {
         array_push($errors, 'Error: Param [node_id] must be a number!');
     }
 
 
     if (!isset($params['language'])) {
-        array_push($errors, 'Error: Param [language] not provided!');
+        array_push($errors, 'Missing mandatory params');
     } else if ('italian' != $params['language'] && 'english' != $params['language']) {
         array_push($errors, 'Error: Param [language] must be match with "italian" or "english" string!');
     }
