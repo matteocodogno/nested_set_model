@@ -18,4 +18,12 @@ interface INodeTree {
      * @return mixed
      */
     public function getChildrenNodes($nodeId, $language, $search, $page = 0, $pageSize = 100);
+
+    /**
+     * Method to check if a $nodeId exist or not
+     *
+     * @param $nodeId
+     * @return mixed
+     */
+    public function existNode($nodeId);
 }

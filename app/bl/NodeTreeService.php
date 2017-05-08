@@ -55,4 +55,19 @@ class NodeTreeService implements INodeTree {
     }
 
 
+    /**
+     * Method to check if a $nodeId exist or not
+     *
+     * @param $nodeId
+     * @return mixed
+     */
+    public function existNode($nodeId) {
+        $node = $this->nodeRepository->findByNodeId($nodeId);
+
+        if (isset($node) && !empty($node)) {
+            return true;
+        }
+
+        return false;
+    }
 }

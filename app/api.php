@@ -24,7 +24,7 @@ switch ($method) {
 
             echo json_encode(['nodes' => $nodes, 'error' => '']);
         } else {
-            $error = join("\n", $errors);
+            $error = join(" - ", $errors);
         }
 
         break;
@@ -47,11 +47,14 @@ if ($error != '') {
  */
 function checkInputParams($params) { // TODO: extract into validation class
     $errors = [];
+    $nodeService = new \NestedRoles\bl\NodeTreeService();
 
     if (!isset($params['node_id'])) {
         array_push($errors, 'Missing mandatory params');
     } else if (!is_numeric($params['node_id'])) {
         array_push($errors, 'Error: Param [node_id] must be a number!');
+    } else if (!$nodeService->existNode($params['node_id'])) {
+        array_push($errors, 'Invalid Node ID');
     }
 
 

@@ -39,4 +39,12 @@ interface NodeTreeRepository {
      * @return mixed
      */
 	public function countChildren($nodeId);
+
+    /**
+     * Method to retrieve a node by $nodeId
+     *
+     * @param $nodeId
+     * @return mixed
+     */
+	public function findByNodeId($nodeId);
 }

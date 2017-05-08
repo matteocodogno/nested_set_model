@@ -105,4 +105,21 @@ class NodeTreeRepositoryImpl extends Connection implements NodeTreeRepository {
 
         return $count;
     }
+
+    /**
+     * Method to retrieve a node by $nodeId
+     *
+     * @param $nodeId
+     * @return mixed
+     */
+    public function findByNodeId($nodeId) {
+        $node = null;
+        $query = "SELECT iLeft FROM node_tree WHERE idNode = ".$nodeId;
+
+        if ($result = $this->conn->query($query)) {
+            $node = $result->fetch_assoc();
+        }
+
+        return $node;
+    }
 }
